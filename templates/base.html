@@ -11,13 +11,14 @@
     <nav>
         <ul>
             <!--double curly brackets contain an expression which is outputting something either onto the screen or in this case into our href-->
-            <li><a href="{{ url_for('index' )}}">Home</a></li>
-            <li><a href="{{ url_for('about' )}}">About</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+            <li><a href="{{ url_for('index') }}"> Home</a></li>
+            <li><a href="{{ url_for('about') }}"> About</a></li>
+            <li><a href="{{ url_for('contact') }}"> Contact Us</a></li>
+            <li><a href="{{ url_for('careers') }}"> Careers</a></li>
         </ul>
     </nav>
 
-    <!--usage of {%%} curly brackets and persentage are for statements that control the flow of our template such as for loop, if-statement or this block element-->
+    <!--usage of curly brackets and persentage are for statements that control the flow of our template such as for loop, if-statement or this block element-->
     {% block content %}
     {% endblock %}
 

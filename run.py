@@ -1,18 +1,17 @@
 import os
-#The Capital f indicates that is a class
-#Instead of writing HTML tags inside the python file we can use render_template
+# The capital F indicates that this is a class.
+# Instead of writing HTML tags inside the Python file, we can use render_template.
 from flask import Flask, render_template
 
-#Create instance of this class
-app = Flask(__name__);
+# Create an instance of the Flask class.
+app = Flask(__name__)
 
-#Telling flask what URL trigger the function
-#a decorator start with @ which is also called pie notation
-#a decorator is a way of wrapping functions
+# Telling Flask which URL triggers the function.
+# A decorator starts with @, which is also called pie notation.
+# A decorator is a way of wrapping functions.
 @app.route("/")
 def index():
-    #return "<h1>Hello,</h1> <h2> World</h2>"
-    #flask will looking for temoplates folder to find html file we refrenssed in pranteces
+    # Flask will look for the 'templates' folder to find the HTML file we referenced in parentheses.
     return render_template("index.html")
 
 
@@ -26,9 +25,15 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/careers")
+def careers():
+    return render_template("careers.html")
+
+
+# Ensure there are two blank lines between functions for PEP8 compliance.
 if __name__ == '__main__':
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
         port=int(os.environ.get("PORT", "5000")),
-        debug = True
+        debug=True
     )
