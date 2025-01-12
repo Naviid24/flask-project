@@ -1,4 +1,5 @@
 import os
+import json
 # The capital F indicates that this is a class.
 # Instead of writing HTML tags inside the Python file, we can use render_template.
 from flask import Flask, render_template
@@ -17,17 +18,23 @@ def index():
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    data = []
+    #we need to oopen the file for python to read it
+    #r means read only
+    #python will open jason file as read only
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+    return render_template("about.html", page_title="About", company=data)
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    return render_template("contact.html", page_title="Contact") #it is good practice to use _ when you are naming a variable
 
 
 @app.route("/careers")
 def careers():
-    return render_template("careers.html")
+    return render_template("careers.html", page_title="Careers")
 
 
 # Ensure there are two blank lines between functions for PEP8 compliance.
