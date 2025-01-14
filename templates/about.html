@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block content %}
 
@@ -15,41 +14,37 @@
 
     {% for member in company %}
 
-        <div class="container">
-            <div class="row featurette">
+        <div class="row featurette">
 
-                {% if loop.index % 2 != 0 %}
+            {% if loop.index % 2 != 0 %}
 
-                    <div class="col-md-7">
-                        <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
-                        <p>{{ member.description }}</p>
-                    </div>
-                    <div class="col-md-5">
-                        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
-                    </div>
-                
-                {% else %}
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>{{ member.description }}</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+            
+            {% else %}
 
-                    <div class="col-md-5">
-                        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
-                    </div>
-                    <div class="col-md-7">
-                        <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
-                        <h3><a href="/about/{{ member.name|replace('', '-')|replace('&', 'and')|replace('ó', 'o')|lower }}">{{ loop.index }}. {{ member.name }}</a></h3>
-                        <p>{{ member.description }}</p>
-                    </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>{{ member.description }}</p>
+                </div>
 
-                {% endif %}
-
-            </div>
+            {% endif %}
 
         </div>
 
-                {% if loop.index != loop.length %}
+        {% if loop.index != loop.length %}
 
-                    <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-                {% endif %}
+        {% endif %}
 
     {% endfor %}
 
