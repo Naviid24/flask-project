@@ -2,10 +2,13 @@ import os
 import json
 # The capital F indicates that this is a class.
 # Instead of writing HTML tags inside the Python file, we can use render_template.
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash
+if os.path.exists("env.py"):
+    import env
 
 # Create an instance of the Flask class.
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
 
 # Telling Flask which URL triggers the function.
 # A decorator starts with @, which is also called pie notation.
@@ -27,8 +30,22 @@ def about():
     return render_template("about.html", page_title="About", company=data)
 
 
-@app.route("/contact")
+@app.route("/about/<member_name>")
+def about_member(member_name):
+    member = {}
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+        for obj in data:
+            if obj["url"] == member_name:
+                member = obj
+    return render_template("member.html", member=member)
+
+
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
     return render_template("contact.html", page_title="Contact") #it is good practice to use _ when you are naming a variable
 
 
